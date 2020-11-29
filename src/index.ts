@@ -44,17 +44,15 @@ async function updateBio(message: string) {
 async function init() {
   try {
     const total = await getWakatimeTotalTime();
-
-    const bioMessage = `15y/o programmer and student - Frontend focused web dev. Coded today: ${total}`;
+    const today = new Date().toLocaleDateString();
+    const bioMessage = `15y/o programmer and student - Frontend focused web dev. Coded Today (${today}): ${total}`;
 
     await updateBio(bioMessage);
-
-    console.log("UPDATE: Successfully updated bio");
   } catch (e) {
     console.error(e);
   }
 }
 
 /* Updates bio every 15minutes */
-init()
+init();
 setInterval(init, 900000);
