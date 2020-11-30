@@ -9,17 +9,24 @@ const endPoints = {
   get_wakatime: `${wakatimeUrl}/users/current/summaries`,
 };
 
-async function getWakatimeTotalTime(): Promise<string> {
-  const res = await axios({
-    method: "GET",
-    url: endPoints.get_wakatime,
-    params: {
-      api_key: process.env.WAKATIME_API_KEY,
-      scope: "read_logged_time",
-      start: new Date(Date.now()),
-      end: new Date(Date.now()),
-    },
-  });
+async function getWakatimeTotalTime(): Promise<string | undefined> {
+  let res = null;
+  try {
+    res = await axios({
+      method: "GET",
+      url: endPoints.get_wakatime,
+      params: {
+        api_key: process.env.WAKATIME_API_KEY,
+        scope: "read_logged_time",
+        start: new Date(Date.now()),
+        end: new Date(Date.now()),
+      },
+    });
+  } catch (e) {
+    console.error(e);
+  }
+
+  if (res === null) return;
 
   const grandTotal: WakatimeItem["grand_total"] = res.data.data[0].grand_total;
 
@@ -27,18 +34,22 @@ async function getWakatimeTotalTime(): Promise<string> {
 }
 
 async function updateBio(message: string) {
-  await axios({
-    method: "PATCH",
-    url: endPoints.gh_update,
-    headers: {
-      Accept: "application/vnd.github.v3+json",
-      Authorization: `token ${process.env?.GH_TOKEN}`,
-    },
+  try {
+    await axios({
+      method: "PATCH",
+      url: endPoints.gh_update,
+      headers: {
+        Accept: "application/vnd.github.v3+json",
+        Authorization: `token ${process.env?.GH_TOKEN}`,
+      },
 
-    data: {
-      bio: message,
-    },
-  });
+      data: {
+        bio: message,
+      },
+    });
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 async function init() {
