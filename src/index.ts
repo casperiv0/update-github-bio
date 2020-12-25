@@ -56,7 +56,7 @@ async function init() {
   try {
     const total = await getWakatimeTotalTime();
     const today = new Date().toLocaleDateString();
-    const bioMessage = `15y/o programmer and student - Frontend focused web dev. Coded Today (${today}): ${total}`;
+    const bioMessage = `15y/o programmer and student - GTA Fanboy - Frontend focused web dev. Coded Today (${today}): ${total}`;
 
     await updateBio(bioMessage);
   } catch (e) {
