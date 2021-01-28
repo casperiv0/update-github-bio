@@ -2,11 +2,12 @@ import "dotenv/config";
 import axios from "axios";
 import { WakatimeItem } from "./interfaces";
 
-const ghUrl = "https://api.github.com";
-const wakatimeUrl = "https://wakatime.com/api/v1";
-const endPoints = {
-  gh_update: `${ghUrl}/user`,
-  get_wakatime: `${wakatimeUrl}/users/current/summaries`,
+const GITHUB_API_URL = "https://api.github.com";
+const WAKATIME_API_URL = "https://wakatime.com/api/v1";
+
+const ENDPOINTS = {
+  GITHUB: `${GITHUB_API_URL}/user`,
+  WAKATIME: `${WAKATIME_API_URL}/users/current/summaries`,
 };
 
 async function getWakatimeTotalTime(): Promise<string | undefined> {
@@ -14,7 +15,7 @@ async function getWakatimeTotalTime(): Promise<string | undefined> {
   try {
     res = await axios({
       method: "GET",
-      url: endPoints.get_wakatime,
+      url: ENDPOINTS.WAKATIME,
       params: {
         api_key: process.env.WAKATIME_API_KEY,
         scope: "read_logged_time",
@@ -37,7 +38,7 @@ async function updateBio(message: string) {
   try {
     await axios({
       method: "PATCH",
-      url: endPoints.gh_update,
+      url: ENDPOINTS.GITHUB,
       headers: {
         Accept: "application/vnd.github.v3+json",
         Authorization: `token ${process.env?.GH_TOKEN}`,
@@ -66,4 +67,4 @@ async function init() {
 
 /* Updates bio every 15minutes */
 init();
-setInterval(init, 900000);
+setInterval(init, 60 * 1000 * 15);
