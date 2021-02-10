@@ -55,14 +55,22 @@ async function updateBio(message: string) {
 
 async function init() {
   try {
+    const age = calculateAge("07/21/2005");
+
     const total = await getWakatimeTotalTime();
     const today = new Date().toLocaleDateString();
-    const bioMessage = `15y/o programmer and student - GTA Fanboy - Frontend focused web dev. Coded Today (${today}): ${total}`;
+    const bioMessage = `${age}y/o programmer and student - GTA Fanboy - Frontend focused web dev. Coded Today (${today}): ${total}`;
 
     await updateBio(bioMessage);
   } catch (e) {
     console.error(e);
   }
+}
+
+function calculateAge(birthDate: string): string {
+  return ((Date.now() - +new Date(birthDate)) / (60 * 60 * 24 * 365 * 1000))
+    .toString()
+    .split(".")[0];
 }
 
 /* Updates bio every 15minutes */
