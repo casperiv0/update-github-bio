@@ -17,7 +17,7 @@ async function getWakatimeTotalTime(): Promise<string | undefined> {
       method: "GET",
       url: ENDPOINTS.WAKATIME,
       params: {
-        api_key: process.env.WAKATIME_API_KEY,
+        api_key: process.env["WAKATIME_API_KEY"],
         scope: "read_logged_time",
         start: new Date(Date.now()),
         end: new Date(Date.now()),
@@ -41,7 +41,7 @@ async function updateBio(message: string) {
       url: ENDPOINTS.GITHUB,
       headers: {
         Accept: "application/vnd.github.v3+json",
-        Authorization: `token ${process.env?.GH_TOKEN}`,
+        Authorization: `token ${process.env["GH_TOKEN"]}`,
       },
 
       data: {
