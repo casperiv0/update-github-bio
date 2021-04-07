@@ -1,5 +1,6 @@
 import "dotenv/config";
 import axios from "axios";
+import format from "date-fns/format";
 import { WakatimeItem } from "./interfaces";
 
 const GITHUB_API_URL = "https://api.github.com";
@@ -58,7 +59,7 @@ async function init() {
     const age = calculateAge("07/21/2005");
 
     const total = await getWakatimeTotalTime();
-    const today = new Date().toLocaleDateString();
+    const today = format(Date.now(), "yyyy-MM-dd")
     const bioMessage = `${age}y/o programmer and student - Frontend focused web dev. Coded Today (${today}): ${total}`;
 
     await updateBio(bioMessage);
