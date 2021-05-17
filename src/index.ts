@@ -59,7 +59,7 @@ async function init() {
     const age = calculateAge("07/21/2005");
 
     const total = await getWakatimeTotalTime();
-    const today = format(Date.now(), "yyyy-MM-dd")
+    const today = format(Date.now(), "yyyy-MM-dd");
     const bioMessage = `${age}y/o programmer and student - Frontend focused web dev. Coded Today (${today}): ${total}`;
 
     await updateBio(bioMessage);
@@ -69,11 +69,9 @@ async function init() {
 }
 
 function calculateAge(birthDate: string): string {
-  return ((Date.now() - +new Date(birthDate)) / (60 * 60 * 24 * 365 * 1000))
-    .toString()
-    .split(".")[0];
+  return ((Date.now() - +new Date(birthDate)) / (60 * 60 * 24 * 365 * 1000)).toString().split(".")[0];
 }
 
-/* Updates bio every 15minutes */
+/* updates bio every 15minutes */
 init();
 setInterval(init, 60 * 1000 * 15);
