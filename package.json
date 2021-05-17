@@ -1,6 +1,6 @@
 {
   "name": "github-auto-bio",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Automatically updates your GitHub bio with your WakaTime stats every 15 minutes",
   "main": "src/index.ts",
   "scripts": {
