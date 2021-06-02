@@ -1,29 +1,28 @@
 {
   "name": "github-auto-bio",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Automatically updates your GitHub bio with your WakaTime stats every 15 minutes",
   "main": "src/index.ts",
   "scripts": {
     "dev": "nodemon src/index.ts",
     "start": "ts-node src/index.ts",
-    "lint": "eslint ./src --ext .tsx,.jsx,.ts,.jsx"
+    "lint": "eslint . --ext .ts,.js,.tsx,.jsx",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,css,json}\" --ignore-path .gitignore"
   },
   "keywords": [],
   "author": "Dev-CasperTheGhost",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",
-    "date-fns": "^2.21.3",
-    "dotenv": "^9.0.2"
+    "date-fns": "^2.22.1",
+    "dotenv": "^10.0.0"
   },
   "devDependencies": {
-    "@casper124578/eslint-config": "^0.0.3",
-    "@types/node": "^15.3.0",
-    "@typescript-eslint/eslint-plugin": "^4.23.0",
-    "@typescript-eslint/parser": "^4.23.0",
-    "eslint": "^7.26.0",
+    "@casper124578/eslint-config": "^0.0.13",
+    "@types/node": "^15.6.2",
+    "eslint": "^7.27.0",
     "nodemon": "^2.0.7",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.4"
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
   }
 }

@@ -1,5 +1,5 @@
 import "dotenv/config";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import format from "date-fns/format";
 import { WakatimeItem } from "./interfaces";
 
@@ -12,7 +12,8 @@ const ENDPOINTS = {
 };
 
 async function getWakatimeTotalTime(): Promise<string | undefined> {
-  let res = null;
+  let res: AxiosResponse | null = null;
+
   try {
     res = await axios({
       method: "GET",
@@ -69,7 +70,9 @@ async function init() {
 }
 
 function calculateAge(birthDate: string): string {
-  return ((Date.now() - +new Date(birthDate)) / (60 * 60 * 24 * 365 * 1000)).toString().split(".")[0];
+  return ((Date.now() - +new Date(birthDate)) / (60 * 60 * 24 * 365 * 1000))
+    .toString()
+    .split(".")[0];
 }
 
 /* updates bio every 15minutes */
