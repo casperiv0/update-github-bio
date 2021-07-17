@@ -70,7 +70,7 @@ async function init() {
 }
 
 function calculateAge(birthDate: string): string {
-  return ((Date.now() - +new Date(birthDate)) / (60 * 60 * 24 * 365 * 1000))
+  return ((Date.now() - new Date(birthDate).getTime()) / (60 * 60 * 24 * 365.25 * 1000))
     .toString()
     .split(".")[0];
 }
