@@ -21,7 +21,7 @@ You can use [`pm2`](https://www.npmjs.com/package/pm2) to start this process in 
 
 1. Make sure that you have followed the steps above
 2. Install pm2 globally: `npm install -g pm2`
-3. Start it! `pm2 start npm --name github-bio --run start`
+3. Start it! `pm2 start npm --name github-bio -- run start`
 
 ## License
 
