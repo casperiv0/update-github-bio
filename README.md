@@ -12,8 +12,9 @@ Automatically updates your GitHub bio with your WakaTime stats every 15 minutes
 4. Update your credentials in `.env`
    - GitHub token: <https://github.com/settings/tokens> make sure to select the `user` scope
    - WakaTime api key: <https://wakatime.com/settings/api-key>
-5. Start it! `npm run start`
-6. It should be running if nothing was returned!
+5. Build it! `npm run build`
+6. Start it! `npm run start`
+7. It should be running if nothing was returned!
 
 ### Running for 24/7
 

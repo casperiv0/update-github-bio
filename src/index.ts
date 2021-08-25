@@ -1,7 +1,7 @@
 import "dotenv/config";
-import axios, { AxiosResponse } from "axios";
-import format from "date-fns/format";
-import { WakatimeItem } from "./interfaces";
+import axios from "axios";
+import format from "date-fns/format/index.js";
+import { WakatimeItem } from "./interfaces.js";
 
 const GITHUB_API_URL = "https://api.github.com";
 const WAKATIME_API_URL = "https://wakatime.com/api/v1";
@@ -12,10 +12,8 @@ const ENDPOINTS = {
 };
 
 async function getWakatimeTotalTime(): Promise<string | undefined> {
-  let res: AxiosResponse | null = null;
-
   try {
-    res = await axios({
+    const res = await axios({
       method: "GET",
       url: ENDPOINTS.WAKATIME,
       params: {
@@ -25,15 +23,14 @@ async function getWakatimeTotalTime(): Promise<string | undefined> {
         end: new Date(Date.now()),
       },
     });
+
+    const grandTotal: WakatimeItem["grand_total"] = res.data.data[0].grand_total;
+
+    return grandTotal.text;
   } catch (e) {
-    console.error(e);
+    const errorMessage = e instanceof Error ? e.message : "Unknown";
+    console.error(`Could not get Wakatime stats: ${errorMessage}`);
   }
-
-  if (res === null) return;
-
-  const grandTotal: WakatimeItem["grand_total"] = res.data.data[0].grand_total;
-
-  return grandTotal.text;
 }
 
 async function updateBio(message: string) {
@@ -51,7 +48,8 @@ async function updateBio(message: string) {
       },
     });
   } catch (e) {
-    console.error(e);
+    const errorMessage = e instanceof Error ? e.message : "Unknown";
+    console.error(`Could not update GitHub bio: ${errorMessage}`);
   }
 }
 
