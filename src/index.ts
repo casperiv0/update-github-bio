@@ -58,6 +58,8 @@ async function init() {
     const age = calculateAge("07/21/2005");
 
     const total = await getWakatimeTotalTime();
+    if (!total) return;
+
     const today = format(Date.now(), "yyyy-MM-dd");
     const bioMessage = `${age}y/o programmer and student - Frontend focused web dev. Coded Today (${today}): ${total}`;
 
