@@ -54,6 +54,8 @@ async function updateBio(message: string) {
 }
 
 async function init() {
+  _checkEnv();
+
   try {
     const age = calculateAge("07/21/2005");
 
@@ -78,3 +80,13 @@ function calculateAge(birthDate: string): string {
 /* updates bio every 15minutes */
 init();
 setInterval(init, 60 * 1000 * 15);
+
+function _checkEnv() {
+  if (!process.env["GH_TOKEN"]) {
+    throw Error("`GH_TOKEN` is a required `.env` item");
+  }
+
+  if (!process.env["WAKATIME_API_KEY"]) {
+    throw Error("`WAKATIME_API_KEY` is a required `.env` item");
+  }
+}
