@@ -2,6 +2,8 @@
 
 Automatically updates your GitHub bio with your WakaTime stats every 15 minutes
 
+![Showcase](./showcase.png)
+
 ## Installation
 
 ### Usage
