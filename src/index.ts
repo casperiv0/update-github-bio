@@ -9,7 +9,7 @@ const WAKATIME_API_URL = "https://wakatime.com/api/v1";
 const ENDPOINTS = {
   GITHUB: `${GITHUB_API_URL}/user`,
   WAKATIME: `${WAKATIME_API_URL}/users/current/summaries`,
-};
+} as const;
 
 async function getWakatimeTotalTime(): Promise<string | undefined> {
   try {
@@ -83,10 +83,10 @@ setInterval(init, 60 * 1000 * 15);
 
 function _checkEnv() {
   if (!process.env["GH_TOKEN"]) {
-    throw Error("`GH_TOKEN` is a required `.env` item");
+    throw new Error("`GH_TOKEN` is a required `.env` item");
   }
 
   if (!process.env["WAKATIME_API_KEY"]) {
-    throw Error("`WAKATIME_API_KEY` is a required `.env` item");
+    throw new Error("`WAKATIME_API_KEY` is a required `.env` item");
   }
 }
