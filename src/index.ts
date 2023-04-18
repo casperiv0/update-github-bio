@@ -19,8 +19,7 @@ async function getWakatimeTotalTime(): Promise<string | undefined> {
       params: {
         api_key: process.env["WAKATIME_API_KEY"],
         scope: "read_logged_time",
-        start: new Date(Date.now()),
-        end: new Date(Date.now()),
+        range: "today",
       },
     });
 
