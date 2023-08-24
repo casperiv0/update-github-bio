@@ -9,13 +9,12 @@ async function make() {
   const watch = args.includes("--watch");
 
   build({
-    outfile: "dist/index.mjs",
+    outfile: "dist/index.js",
     entryPoints: ["./src/index.ts"],
     format: "esm",
     bundle: true,
     platform: "node",
     external: Object.keys(pkg.dependencies),
-    watch,
     logLevel: "info",
     minify: !watch,
   });

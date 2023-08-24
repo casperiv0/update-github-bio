@@ -6,16 +6,16 @@ import { WakatimeItem } from "./interfaces.js";
 const GITHUB_API_URL = "https://api.github.com";
 const WAKATIME_API_URL = "https://wakatime.com/api/v1";
 
-const ENDPOINTS = {
-  GITHUB: `${GITHUB_API_URL}/user`,
-  WAKATIME: `${WAKATIME_API_URL}/users/current/summaries`,
+const Endpoints = {
+  GitHub: `${GITHUB_API_URL}/user`,
+  WakaTime: `${WAKATIME_API_URL}/users/current/summaries`,
 } as const;
 
 async function getWakatimeTotalTime(): Promise<string | undefined> {
   try {
     const res = await axios({
       method: "GET",
-      url: ENDPOINTS.WAKATIME,
+      url: Endpoints.WakaTime,
       params: {
         api_key: process.env["WAKATIME_API_KEY"],
         scope: "read_logged_time",
@@ -36,7 +36,7 @@ async function updateBio(message: string) {
   try {
     await axios({
       method: "PATCH",
-      url: ENDPOINTS.GITHUB,
+      url: Endpoints.GitHub,
       headers: {
         Accept: "application/vnd.github.v3+json",
         Authorization: `token ${process.env["GH_TOKEN"]}`,

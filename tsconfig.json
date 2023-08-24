@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "module": "commonjs",
+    "target": "ESNext",
+    "module": "NodeNext",
     "jsx": "preserve",
     "removeComments": true,
     "strict": true,
@@ -11,13 +11,12 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["dom", "dom.iterable", "esnext", "ES2020.BigInt"],
+    "lib": ["ESNext"],
     "allowJs": true,
     "noEmit": false,
     "isolatedModules": true,
     "noUnusedLocals": true,
     "noImplicitOverride": false,
-
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true
